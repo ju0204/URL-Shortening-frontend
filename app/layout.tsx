@@ -15,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Snip - URL Shortener',
+  title: 'Shortify',
   description: 'URL을 간결하게 단축하고, 트렌드를 분석하세요.',
 }
 

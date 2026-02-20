@@ -42,7 +42,7 @@ export function UrlShortener() {
   const handleShorten = useCallback(async () => {
     console.log("[SHORTEN] clicked") 
     console.log("[SHORTEN] API_CONFIGURED =", API_CONFIGURED)
-console.log("[SHORTEN] GW_URL =", process.env.NEXT_PUBLIC_API_GATEWAY_URL)
+    console.log("[SHORTEN] GW_URL =", process.env.NEXT_PUBLIC_API_GATEWAY_URL)
     setError("")
 
     if (!url.trim()) {

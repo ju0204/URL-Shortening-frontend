@@ -1,15 +1,24 @@
+
+import Image from "next/image"
 import { Link2 } from "lucide-react"
+
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
+      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-            <Link2 className="h-4 w-4 text-primary-foreground" />
-          </div>
+          {/* 로고 */}
+          <Image
+            src="/logo.png"
+            alt="Shortify logo"
+            width={180}
+            height={84}
+            
+            priority
+          />
           <span className="text-lg font-bold tracking-tight text-foreground">
-            Shortify
+            
           </span>
         </div>
         <nav className="flex items-center gap-6" aria-label="Main navigation">

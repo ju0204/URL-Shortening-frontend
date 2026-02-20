@@ -35,3 +35,41 @@ export async function shortenUrl(originalUrl: string): Promise<ShortenResponse> 
  */
 // export async function fetchTrends() { ... }
 // export async function fetchShareTiming() { ... }
+
+export type PeriodKey = "P#1MIN" | "P#30MIN" | "P#1H" | "P#24H" | "P#7D"
+
+export interface AiLatestResponse {
+  found: boolean
+  periodKey: PeriodKey | string
+  aiGeneratedAt?: string
+  aiTrend?: unknown
+  aiInsight?: unknown
+  message?: string
+  allowed?: string[]
+}
+
+/** AI 최신 결과 조회 */
+export async function fetchAiLatest(periodKey: PeriodKey = "P#30MIN"): Promise<AiLatestResponse> {
+  if (!API_BASE_URL) throw new Error("API URL이 설정되지 않았습니다.")
+
+  // P#30MIN 같은 값에 #가 들어가서 반드시 인코딩 필요
+  const qs = new URLSearchParams({ periodKey }).toString()
+
+  const res = await fetch(`${API_BASE_URL}/ai/latest?${qs}`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    // 최신값 바로 보고 싶으면(선택)
+    cache: "no-store",
+  })
+
+  const data = await res.json().catch(() => ({}))
+
+  console.log("[fetchAiLatest]", { url: `${API_BASE_URL}/ai/latest?${qs}`, status: res.status, data })
+
+
+  if (!res.ok) {
+    throw new Error(data.error || data.message || `AI 최신 조회 실패 (HTTP ${res.status})`)
+  }
+
+  return data as AiLatestResponse
+}
