@@ -6,6 +6,7 @@ on:
 permissions:
   id-token: write
   contents: read
+  actions: read
 
 concurrency:
   group: deploy-frontend
@@ -52,6 +53,7 @@ jobs:
 
       - name: Upload to S3
         run: aws s3 sync out "s3://${S3_BUCKET}" --delete
+      
 
       - name: CloudFront Invalidation
         run: aws cloudfront create-invalidation --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" --paths "/*"
