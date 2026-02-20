@@ -42,10 +42,15 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
-      - name: Build
+      - name: Build (creates out/)
         run: pnpm build
         env:
           NEXT_PUBLIC_API_GATEWAY_URL: ${{ env.NEXT_PUBLIC_API_GATEWAY_URL }}
+
+      - name: Debug build outputs
+        run: |
+          ls -al
+          ls -al out || true
 
       - name: Configure AWS (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
@@ -53,10 +58,8 @@ jobs:
           role-to-assume: ${{ env.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
-
       - name: Upload to S3
-        run: aws s3 sync out "s3://${S3_BUCKET}" --delete
-      
+        run: aws s3 sync ./out "s3://${S3_BUCKET}" --delete
 
       - name: CloudFront Invalidation
         run: aws cloudfront create-invalidation --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" --paths "/*"
