@@ -117,7 +117,7 @@ export function UrlTrends() {
                 <Globe className="h-5 w-5 text-primary" />
                 인기 도메인
               </CardTitle>
-              <CardDescription>최근 데이터 기준(PeriodKey 기반)</CardDescription>
+              <CardDescription>어떤 도메인이 인기일까요?</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-4">
