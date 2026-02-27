@@ -96,9 +96,7 @@ export function ShareTiming() {
           </p>
 
           {error && <p className="text-sm text-red-500">{error}</p>}
-          {ai && ai.found && ai.aiGeneratedAt && (
-            <p className="text-xs text-muted-foreground">업데이트: {ai.aiGeneratedAt}</p>
-          )}
+          
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
@@ -146,7 +144,7 @@ export function ShareTiming() {
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">추천 시간대</CardTitle>
-              <CardDescription>AI가 추천한 공유 시간 (HH:MM)</CardDescription>
+              <CardDescription>AI가 추천한 공유 시간</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-4">
