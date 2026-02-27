@@ -26,7 +26,7 @@ export function UrlTrends() {
     console.log("[UrlTrends] fetching /ai/latest...")
     fetchAiLatest("P#30MIN")
       .then((data) => {
-        console.log("[UrlTrends] ai/latest:", data) // ✅ 브라우저 콘솔에 뜸
+        console.log("[UrlTrends] ai/latest:", data) 
         setAi(data)
       })
       .catch((e) => setError(e?.message || "불러오기 실패"))
@@ -106,9 +106,7 @@ export function UrlTrends() {
 
           {/* 상태 표시(선택) */}
           {error && <p className="text-sm text-red-500">{error}</p>}
-          {ai && ai.found && ai.aiGeneratedAt && (
-            <p className="text-xs text-muted-foreground">업데이트: {ai.aiGeneratedAt}</p>
-          )}
+          
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
